@@ -10,4 +10,19 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+model User {
+  id         Int      @id @default(autoincrement())
+  email      String   @unique
+  name       String
+  lastname   String
+  dni        Int?     @unique
+  password   String
+  //Validar en Postman que solo
+  //se inserte año, mes, dia
+  birthdate  DateTime  @db.Date()
+  isAdmin    Boolean   @db.TinyInt()
+  createdAt  DateTime  @default(now())
+  updatedAt  DateTime  @updatedAt
+}
+
 
